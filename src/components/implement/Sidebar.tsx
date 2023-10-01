@@ -38,7 +38,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
   const pathname = usePathname();
 
   return (
-    <div className="w-60 h-full bg-white box-border px-4 py-9 rounded-r-card shadow-xl">
+    <div className="w-60 h-full bg-white box-border px-4 py-9 rounded-r-card shadow-xl fixed top-0 bottom-0 left-0">
       <Image
         src="/logo/virdee.svg"
         alt="virdee dashboard logo"
@@ -55,10 +55,10 @@ const Sidebar: FC<SidebarProps> = ({}) => {
               <li key={content.title}>
                 <Link
                   href={content.nav}
-                  className={`heading2 capitalize px-4 py-3 rounded-lg flex gap-4 hover:bg-accent-foreground duration-150 ${
+                  className={`capitalize px-4 py-3 rounded-lg flex gap-4 hover:bg-accent-foreground duration-150 ${
                     pathname.includes(content.nav)
-                      ? "text-accent bg-accent-foreground "
-                      : ""
+                      ? "text-accent bg-accent-foreground heading2"
+                      : "caption"
                   }`}
                 >
                   <LucideIcons />

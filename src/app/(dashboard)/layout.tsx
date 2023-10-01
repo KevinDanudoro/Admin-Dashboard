@@ -29,9 +29,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-row h-[100vh]">
+          <div className="relative">
             <Sidebar />
-            <div className="px-20 py-12 w-full">{children}</div>
+            <div className="ml-60 px-12 pt-12">{children}</div>
           </div>
         </ThemeProvider>
       </body>

@@ -85,6 +85,9 @@
   .caption {
     @apply font-medium text-[14px];
   }
+  .caption-thin {
+    @apply font-normal text-[14px];
+  }
   .label-bold {
     @apply font-bold text-[10px];
   }
