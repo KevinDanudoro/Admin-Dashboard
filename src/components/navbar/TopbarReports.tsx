@@ -21,6 +21,7 @@ const TopbarReports: FC<TopbarReportsProps> = ({}) => {
   }, [pathname]);
 
   return (
+    // Revisi struktur List agar meningkatkan Accesibility
     <ul className="flex bg-slate-100 rounded-lg relative p-2 h-14">
       <span
         className={`w-32 h-10 bg-white absolute rounded-lg shadow-md duration-150`}

@@ -18,7 +18,10 @@ const SelectFilter: FC<SelectFilterProps> = (props) => {
   const { title, choices, ...resProps } = props;
   return (
     <Select defaultValue={choices[0]} {...resProps}>
-      <SelectTrigger className="w-[250px] capitalize bg-card rounded-full">
+      <SelectTrigger
+        className="w-[250px] capitalize bg-card rounded-full"
+        aria-label="dashboard content filter"
+      >
         <div className="flex gap-2">
           <span>{title}: </span>
           <div className="heading2">

@@ -19,6 +19,20 @@ interface DoughnutDiagramProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const DoughnutDiagram: FC<DoughnutDiagramProps> = (props) => {
   const { className, labels, dataset, ...resProps } = props;
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: dataset.label,
+        data: dataset.data,
+        backgroundColor: ["#1B59F8", "#769BFA", "#D5E1FD"],
+        borderRadius: 8,
+        spacing: 4,
+      },
+    ],
+  };
+
   return (
     <div className={cn("w-full flex justify-end", className)} {...resProps}>
       <Doughnut
@@ -33,23 +47,12 @@ const DoughnutDiagram: FC<DoughnutDiagramProps> = (props) => {
                 usePointStyle: true,
                 pointStyle: "rectRounded",
                 pointStyleWidth: 30,
-                generateLabels: (e) => customLabel(e),
+                generateLabels: (e: ChartJS) => customLabel(e),
               },
             },
           },
         }}
-        data={{
-          labels: labels,
-          datasets: [
-            {
-              label: dataset.label,
-              data: dataset.data,
-              backgroundColor: ["#1B59F8", "#769BFA", "#D5E1FD"],
-              borderRadius: 8,
-              spacing: 4,
-            },
-          ],
-        }}
+        data={data}
       />
     </div>
   );

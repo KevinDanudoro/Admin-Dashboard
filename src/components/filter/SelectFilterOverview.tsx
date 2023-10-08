@@ -3,7 +3,7 @@
 import React from "react";
 import type { FC } from "react";
 import { useSelectFilterOverview } from "@/store/SelectFilterOverview";
-import SelectFilter from "@/components/custom/SelectFilter";
+import SelectFilter from "@/components/filter/SelectFilter";
 
 const filterContents = [
   {
@@ -23,7 +23,7 @@ const filterContents = [
 interface SelectFilterOverviewProps {}
 
 const SelectFilterOverview: FC<SelectFilterOverviewProps> = ({}) => {
-  const { setFilter } = useSelectFilterOverview();
+  const { setFilters } = useSelectFilterOverview();
 
   return (
     <div className="flex gap-4">
@@ -33,7 +33,7 @@ const SelectFilterOverview: FC<SelectFilterOverviewProps> = ({}) => {
           title={content.title}
           choices={content.choices}
           onValueChange={(value: string) =>
-            setFilter({ type: content.title, value })
+            setFilters({ type: content.title, value })
           }
         />
       ))}

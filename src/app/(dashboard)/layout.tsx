@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { ThemeProvider } from "@/components/implement/ThemeProvider";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 import { cn } from "@/lib/utils";
-import Sidebar from "@/components/implement/Sidebar";
+import Sidebar from "@/components/navbar/Sidebar";
 import "@/styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,7 +31,7 @@ export default function RootLayout({
         >
           <div className="relative">
             <Sidebar />
-            <div className="ml-60 px-12 pt-12">{children}</div>
+            <div className="ml-60 p-12">{children}</div>
           </div>
         </ThemeProvider>
       </body>

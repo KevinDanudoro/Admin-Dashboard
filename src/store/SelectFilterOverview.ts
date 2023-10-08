@@ -1,23 +1,30 @@
 import { create } from "zustand";
 
-interface xxs {
+interface ISelectFilterOverview {
   type: string;
   value: string;
 }
 
-type Store = {
-  filter: xxs[];
-  setFilter: (newFilter: xxs) => void;
+type SelectFilterOverviewStore = {
+  filters: ISelectFilterOverview[];
+  setFilters: (newFilter: ISelectFilterOverview) => void;
 };
 
-export const useSelectFilterOverview = create<Store>()((set) => ({
-  filter: [],
-  setFilter: (newFilter) =>
-    set((state) => {
-      const filtered = state.filter.filter(
-        (val) => val.type !== newFilter.type
-      );
+export const useSelectFilterOverview = create<SelectFilterOverviewStore>()(
+  (set) => ({
+    filters: [],
+    setFilters: (newFilter) =>
+      set((state) => {
+        const currentFilters = state.filters;
 
-      return { filter: [...filtered, newFilter] };
-    }),
-}));
+        for (const i in currentFilters) {
+          if (currentFilters[i].type === newFilter.type) {
+            currentFilters[i] = newFilter;
+            break;
+          }
+        }
+
+        return { filters: currentFilters };
+      }),
+  })
+);
