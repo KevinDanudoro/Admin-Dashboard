@@ -4,7 +4,7 @@ import type { FC } from "react";
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
-  return <div>marketting</div>;
+  return <div>Marketting</div>;
 };
 
 export default page;

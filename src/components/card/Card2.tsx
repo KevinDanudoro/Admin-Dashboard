@@ -1,4 +1,4 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import type { FC } from "react";
 import CardLayout from "./CardLayout";
 import SelectFilterGhost from "../filter/SelectFilterGhost";
@@ -7,12 +7,13 @@ import { cn } from "@/lib/utils";
 
 interface Card2Props extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
+  titleStyle?: string;
   select?: string[];
   children: React.ReactNode;
 }
 
 const Card2: FC<Card2Props> = (props) => {
-  const { children, className, title, select, ...resProps } = props;
+  const { children, className, title, select, titleStyle, ...resProps } = props;
 
   return (
     <CardLayout
@@ -22,9 +23,9 @@ const Card2: FC<Card2Props> = (props) => {
       )}
       {...resProps}
     >
-      <h4 className="justify-self-start w-max">{title}</h4>
+      <h4 className={cn(titleStyle, "justify-self-start w-max")}>{title}</h4>
       {select && <SelectFilterGhost />}
-      <Separator orientation="horizontal" className="col-span-2" />
+      <Separator orientation="horizontal" className="col-span-2 mb-2" />
       <div className="col-span-2 h-full w-full">{children}</div>
     </CardLayout>
   );

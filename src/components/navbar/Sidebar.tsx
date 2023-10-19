@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,24 +18,34 @@ export const sidebarContents: ISidebarContent[] = [
   {
     title: "reports",
     icon: TrendingUp,
-    nav: "/reports",
+    nav: "reports",
   },
   {
     title: "workspaces",
     icon: LayoutGrid,
-    nav: "/workspaces",
+    nav: "workspaces",
   },
   {
     title: "settings",
     icon: Settings,
-    nav: "/settings",
+    nav: "settings",
   },
 ];
 
 interface SidebarProps {}
 
 const Sidebar: FC<SidebarProps> = ({}) => {
+  const [menu, setMenu] = useState(0);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const midPath = pathname.split("/")[1];
+    const currentMenu = sidebarContents.findIndex(
+      (content) => content.nav === midPath
+    );
+
+    setMenu(currentMenu);
+  }, [pathname]);
 
   return (
     <div className="w-60 h-full bg-white box-border px-4 py-9 rounded-r-card shadow-xl fixed top-0 bottom-0 left-0">
@@ -49,17 +59,18 @@ const Sidebar: FC<SidebarProps> = ({}) => {
       />
       <nav>
         <ul className="flex flex-col gap-4 mt-10">
-          {sidebarContents.map((content) => {
+          {sidebarContents.map((content, i) => {
             const LucideIcons = content.icon;
             return (
               <li key={content.title}>
                 <Link
-                  href={content.nav}
+                  href={`/${content.nav}`}
                   className={`capitalize px-4 py-3 rounded-lg flex gap-4 hover:bg-accent-foreground duration-150 ${
-                    pathname.includes(content.nav)
+                    menu === i
                       ? "text-accent bg-accent-foreground heading2"
                       : "caption"
                   }`}
+                  onClick={() => setMenu(i)}
                 >
                   <LucideIcons />
                   {content.title}

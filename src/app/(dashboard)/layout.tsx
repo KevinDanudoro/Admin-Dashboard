@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { cn } from "@/lib/utils";
 import Sidebar from "@/components/navbar/Sidebar";
 import "@/styles/globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,9 +32,10 @@ export default function RootLayout({
         >
           <div className="relative">
             <Sidebar />
-            <div className="ml-60 p-12">{children}</div>
+            <div className="ml-60 p-12 relative">{children}</div>
           </div>
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );

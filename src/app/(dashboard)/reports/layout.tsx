@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <Separator orientation="horizontal" className="my-6" />
 
-      {children}
+      <div className="relative">{children}</div>
     </>
   );
 }

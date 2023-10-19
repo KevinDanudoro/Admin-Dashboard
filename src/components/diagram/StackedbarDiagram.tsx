@@ -15,6 +15,21 @@ const StackedbarDiagram: FC<StackedbarDiagramProps> = ({
     setState(true);
   }, []);
 
+  const datas = [
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "des",
+  ];
+
   return (
     <div
       className={cn(className, "grid grid-cols-[50px,1fr] w-full h-full")}
@@ -30,9 +45,9 @@ const StackedbarDiagram: FC<StackedbarDiagramProps> = ({
         </div>
       </div>
       <div className="w-full h-full grid grid-cols-[repeat(12,minmax(0,1fr))] lg:gap-x-4 gap-x-2">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((id) => (
+        {datas.map((data, i) => (
           <div
-            key={id}
+            key={data}
             className="grid grid-rows-[1fr,auto] justify-items-center gap-y-1"
           >
             <div className="w-full max-w-[13px] h-full rounded-full flex flex-col-reverse bg-accent-foreground overflow-hidden">
@@ -40,13 +55,13 @@ const StackedbarDiagram: FC<StackedbarDiagramProps> = ({
                 className="h-full w-full rounded-full duration-200 ease-out bg-[linear-gradient(180deg,#769BFA,#1B59F8)]"
                 style={{
                   transform: `${
-                    state ? `translateY(${id * 7}%)` : "translateY(100%)"
+                    state ? `translateY(${i * 7}%)` : "translateY(100%)"
                   }`,
-                  transitionDelay: `${id * 50}ms`,
+                  transitionDelay: `${i * 50}ms`,
                 }}
               />
             </div>
-            <small className="row-start-2 uppercase">jan</small>
+            <small className="row-start-2 uppercase">{data}</small>
           </div>
         ))}
       </div>
